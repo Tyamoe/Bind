@@ -1,0 +1,39 @@
+#AcDomain
+{
+-fx-background-color: #C9C9C9;
+}
+
+#AcAccount
+{
+-fx-background-color: #C9C9C9;
+}
+
+#borders
+{
+-fx-fill: black;
+-fx-stroke: black;
+}
+
+#DefaultLabel
+{
+-fx-text-fill: black;
+}
+
+#notDefaultLabel
+{
+-fx-border-color: black;
+-fx-border-width: 3px;
+-fx-text-fill: black;
+-fx-background-color: #F0F0F0;
+}
+
+#Blur
+{
+-fx-text-fill: green;
+-fx-text-inner-color: red;
+}
+
+.color-picker .color-picker-label .text 
+{
+visibility: true;
+}

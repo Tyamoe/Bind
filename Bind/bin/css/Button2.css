@@ -1,0 +1,136 @@
+#backbutton
+{
+-fx-background-color: #1D8DEE;
+-fx-border-color: #000000;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 13px;
+-fx-border-insets: -1px;
+-fx-background-radius: 13px;
+-fx-text-fill: white;
+}
+
+#back
+{
+-fx-background-color: #1D8DEE;
+-fx-border-color: #000000;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 13px;
+-fx-border-insets: -1px;
+-fx-background-radius: 13px;
+-fx-text-fill: white;
+}
+
+#logout
+{
+-fx-background-color: #a00000;
+-fx-border-color: #000000;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 100px;
+-fx-border-insets: -1px;
+-fx-background-radius: 100px;
+-fx-text-fill: white;
+}
+
+#View
+{
+-fx-background-color: #00a000;
+-fx-border-color: #000000;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 100px;
+-fx-border-insets: -1px;
+-fx-background-radius: 100px;
+-fx-text-fill: white;
+}
+
+#Add
+{
+-fx-background-color: #1D8DEE;
+-fx-border-color: #000000;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-border-radius: 100px;
+-fx-border-insets: -1px;
+-fx-background-radius: 100px;
+-fx-text-fill: white;
+}
+
+#temp
+{
+-fx-background-color: rgba(255, 0, 0, 1);
+}
+
+#DefaultButton
+{
+-fx-background-color: #1D8DEE;
+-fx-border-color: #000000;
+-fx-border-insets: -1px;
+-fx-border-width: 2px 2px 2px 2px;
+-fx-text-fill: white;
+}
+
+#Settings
+{
+-fx-background-image: url("../images/SettingsIcon3.png");
+-fx-background-size: 80% 80%;
+-fx-background-position: 30%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:center;  
+-fx-background-color: transparent;
+}
+
+#Settings:hover
+{
+-fx-background-image: url("../images/SettingsIcon3.png");
+-fx-background-size: 90% 90%;
+-fx-background-position: 30%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:center;  
+-fx-background-color: transparent;
+}
+
+#close
+{
+-fx-background-radius: 23px;
+-fx-background-image: url("../images/CloseButtonDarkMode.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:left;  
+-fx-background-color: transparent;
+}
+
+#facebookk
+{
+-fx-background-radius: 23px;
+-fx-background-image: url("../images/123.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:left;  
+-fx-background-color: transparent;
+}
+#facebookk1
+{
+-fx-background-radius: 23px;
+-fx-background-image: url("../images/456.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:left;  
+-fx-background-color: transparent;
+}
+
+#twitterr
+{
+-fx-background-radius: 23px;
+-fx-background-image: url("../images/twitterLogo1.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:left;  
+-fx-background-color: transparent;
+}
+#twitterr1
+{
+-fx-background-radius: 23px;
+-fx-background-image: url("../images/twitterLogo2.png");
+-fx-background-size: 100% 100%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:left;  
+-fx-background-color: transparent;
+}

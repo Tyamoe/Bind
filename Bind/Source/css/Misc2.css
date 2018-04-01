@@ -1,0 +1,21 @@
+.menu-item:focused 
+{
+-fx-background: transparent;
+-fx-background-color: transparent;
+-fx-text-fill: white;
+}
+
+.menu-item:focused .label 
+{
+-fx-text-fill: black;
+-fx-background-color: transparent;
+}
+
+.menu-button > .arrow-button 
+{
+    -fx-padding: 0;
+}
+.menu-button > .arrow-button > .arrow 
+{
+    -fx-padding: 0;
+}

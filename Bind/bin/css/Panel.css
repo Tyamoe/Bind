@@ -1,0 +1,113 @@
+#BackgroundPane
+{
+-fx-background-color: #F0F0F0;
+}
+
+#mheader
+{
+-fx-text-fill: black;
+}
+
+#gearicon
+{
+-fx-background-image: url("../images/SettingsIcon2.png");
+-fx-background-size: 80% 80%;
+-fx-background-position: 30%;
+-fx-background-repeat: no-repeat;
+-fx-background-position:center;  
+-fx-background-color: transparent;
+}
+
+#inputPane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: yellow;
+-fx-border-width: 2px;
+}
+
+#changePane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: yellow;
+-fx-border-width: 2px;
+}
+
+#mainPane
+{
+-fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#topPaneApp
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #969696;
+-fx-border-width: 0px 0px 2px 0px;
+}
+
+#bottomPaneApp
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #969696;
+-fx-border-width: 2px 0px 0px 0px;
+}
+
+#topRow
+{
+-fx-background-color: #969696;
+}
+
+#middleRow
+{
+-fx-background-color: #969696;
+}
+
+#bottomRow
+{
+-fx-background-color: #969696;
+}
+
+#topPane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 0px 0px 2px 0px;
+}
+
+#bottomPane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 2px 0px 0px 0px;
+}
+
+#myPane
+{
+-fx-background-size: 0% 0%;
+-fx-background-color: #969696;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 2px 2px 2px 2px;
+}
+
+#myPanee
+{
+-fx-background-size: 0% 0%;
+-fx-background-color: #969696;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 2px 2px 2px 2px;
+}
+
+#popup
+{
+-fx-background-color: #C9C9C9;
+-fx-border-color: #AFAFAF;
+-fx-border-width: 4px;
+}
+
+#ForgotPage
+{
+-fx-background-color: #F0F0F0;
+-fx-background-radius: 50px;
+-fx-border-width: 3px;
+-fx-border-color: #969696;
+-fx-border-radius: 50px;
+}

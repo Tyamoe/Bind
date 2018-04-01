@@ -1,0 +1,82 @@
+#BackgroundPane
+{
+-fx-background-color: #151E29;
+}
+
+#mainPane
+{
+-fx-background-color: rgba(0, 0, 0, 0);
+}
+
+#changePane
+{
+-fx-background-color: #1B2737;
+-fx-border-color: yellow;
+-fx-border-width: 2px;
+}
+
+#topPaneApp
+{
+-fx-background-color: #1B2737;
+-fx-border-color: #000000;
+-fx-border-width: 0px 0px 2px 0px;
+}
+
+#bottomPaneApp
+{
+-fx-background-color: #1B2737;
+-fx-border-color: #000000;
+-fx-border-width: 2px 0px 0px 0px;
+}
+
+#topRow
+{
+-fx-background-color: #969696;
+}
+
+#middleRow
+{
+-fx-background-color: #969696;
+}
+
+#bottomRow
+{
+-fx-background-color: #969696;
+}
+
+#topPane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 0px 0px 2px 0px;
+}
+
+#bottomPane
+{
+-fx-background-color: #c9c9c9;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 2px 0px 0px 0px;
+}
+
+#myPane
+{
+-fx-background-color: #969696;
+-fx-border-color: #aaaaaa;
+-fx-border-width: 2px 2px 2px 2px;
+}
+
+#popup
+{
+-fx-background-color: #1B2737;
+-fx-border-color: #000000;
+-fx-border-width: 4px;
+}
+
+#ForgotPage
+{
+-fx-background-color: #151E29;
+-fx-background-radius: 50px;
+-fx-border-width: 3px;
+-fx-border-color: #000000;
+-fx-border-radius: 50px;
+}

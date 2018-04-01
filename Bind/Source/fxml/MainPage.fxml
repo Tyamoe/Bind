@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.net.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="ThePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainPageController">
+   <children>
+      <AnchorPane fx:id="MenuBar" prefHeight="35.0" prefWidth="600.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button id="DefaultButton" fx:id="btnRefresh" disable="true" mnemonicParsing="false" onAction="#Refresh" prefWidth="80.0" text="Refresh" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <MenuButton id="DefaultButton" fx:id="btnProfile" mnemonicParsing="false" text="Profile" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="0.0">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#CreateProfile" text="New" />
+               </items></MenuButton>
+            <Button id="DefaultButton" fx:id="btnSettings" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#OpenSettings" prefWidth="70.0" text="Settings" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Label fx:id="MainHeader" alignment="CENTER" layoutY="-19.0" prefHeight="57.0" prefWidth="120.0" text="binds" textAlignment="CENTER" AnchorPane.bottomAnchor="-7.0" AnchorPane.leftAnchor="240.0" AnchorPane.rightAnchor="240.0" AnchorPane.topAnchor="-15.0">
+               <font>
+                  <Font name="Harlow Solid Italic" size="32.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <ScrollPane fx:id="sPane" hbarPolicy="NEVER" layoutY="49.0" prefHeight="365.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+        <content>
+          <AnchorPane fx:id="Container" minHeight="0.0" minWidth="0.0" prefHeight="365.0" prefWidth="600.0">
+               <children>
+                  <AnchorPane disable="true" prefHeight="35.0" prefWidth="200.0" visible="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0">
+                     <children>
+                        <TextField alignment="CENTER" text="Tyamoe" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="370.0" AnchorPane.topAnchor="0.0" />
+                        <TextField alignment="CENTER" disable="true" style="-fx-opacity: 1;" text="Ctrl" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="255.0" AnchorPane.rightAnchor="250.0" AnchorPane.topAnchor="0.0" />
+                        <TextField alignment="CENTER" text="Alt" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="375.0" AnchorPane.rightAnchor="130.0" AnchorPane.topAnchor="0.0" />
+                        <TextField alignment="CENTER" text="T" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="495.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="0.0" />
+                        <CheckBox layoutX="223.0" layoutY="8.0" mnemonicParsing="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="227.0" AnchorPane.rightAnchor="337.0" AnchorPane.topAnchor="0.0" />
+                     </children>
+                  </AnchorPane>
+               </children></AnchorPane>
+        </content>
+      </ScrollPane>
+      <Button id="Add" fx:id="btnAdd" disable="true" mnemonicParsing="false" onAction="#AddNewShortcut" prefHeight="60.0" prefWidth="60.0" text="Add" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="Add" fx:id="btnEdit" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#EditShortcut" prefHeight="60.0" prefWidth="60.0" text="Edit" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="25.0" />
+      <Button id="Add" fx:id="btnSubmit" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#Submit" prefHeight="60.0" prefWidth="60.0" text="Submit" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+      <Button id="Add" fx:id="btnCancel" disable="true" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="60.0" prefWidth="60.0" text="Cancel" visible="false" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="25.0" />
+      <Button id="DefaultButton" fx:id="btnDelete" disable="true" mnemonicParsing="false" onAction="#DeleteShortcut" prefWidth="70.0" text="Delete" visible="false" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="265.0">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <AnchorPane fx:id="CreateProfilePane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane style="-fx-background-color: grey; -fx-border-color: yellow;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Button id="close" mnemonicParsing="false" onAction="#ExitProfilePane" prefHeight="40.0" prefWidth="40.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                  <Label prefWidth="120.0" text="Enter Profile Name" textFill="#000000fc" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="10.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fieldProfileName" layoutX="126.0" layoutY="75.0" AnchorPane.leftAnchor="126.0" AnchorPane.topAnchor="50.0" />
+                  <PasswordField fx:id="fieldPassword21" alignment="CENTER" layoutX="140.0" layoutY="106.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" promptText="OPTIONAL" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="110.0" />
+                  <TextField fx:id="fieldPassword11" alignment="CENTER" layoutX="140.0" layoutY="106.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" visible="false" AnchorPane.leftAnchor="140.0" AnchorPane.topAnchor="110.0" />
+                  <Button id="DefaultButton" mnemonicParsing="false" onAction="#SubmitNewProfile" prefWidth="60.0" text="Submit" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="170.0" AnchorPane.rightAnchor="170.0" />
+                  <Label layoutX="64.0" layoutY="110.0" text="Password" AnchorPane.leftAnchor="50.0" AnchorPane.topAnchor="110.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Button id="showhide2" fx:id="btnShowHide2" layoutX="273.0" layoutY="112.0" mnemonicParsing="false" onAction="#ShowHide" prefHeight="20.0" prefWidth="32.0" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="112.0">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="SettingsPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="SettingsDisplay" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #B6B6B6; -fx-border-color: yellow;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="100.0">
+               <children>
+                  <Button id="close" mnemonicParsing="false" onAction="#CloseSettings" prefHeight="40.0" prefWidth="40.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                  <TextField fx:id="fieldPName" layoutX="139.0" layoutY="80.0" prefHeight="25.0" prefWidth="100.0" AnchorPane.rightAnchor="160.0" AnchorPane.topAnchor="80.0" />
+                  <TextField fx:id="fieldPassword1" layoutX="97.0" layoutY="138.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" visible="false" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="140.0" />
+                  <PasswordField fx:id="fieldPassword2" layoutX="118.0" layoutY="141.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" AnchorPane.rightAnchor="150.0" AnchorPane.topAnchor="140.0" />
+                  <Button fx:id="OpenConfirmationPane" layoutX="146.0" layoutY="196.0" mnemonicParsing="false" onAction="#OpenConfirmationPane" prefHeight="40.0" prefWidth="110.0" text="Delete Profile" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="135.0">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="282.0" layoutY="80.0" mnemonicParsing="false" onAction="#ChangeName" text="Change" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="80.0" />
+                  <Button layoutX="282.0" layoutY="138.0" mnemonicParsing="false" onAction="#ChangePassword" text="Change" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="140.0" />
+                  <Label layoutX="138.0" layoutY="14.0" text="Profile Settings" textFill="#000000fd" AnchorPane.leftAnchor="138.0" AnchorPane.topAnchor="14.0">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblName" layoutX="30.0" layoutY="84.0" text="Profile Name" textFill="#000000fe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="80.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblPassword" layoutX="21.0" layoutY="141.0" text="Password" textFill="#000000fe" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <Button id="showhide2" fx:id="btnShowHide1" layoutX="254.0" layoutY="143.0" mnemonicParsing="false" onAction="#ShowHide" prefHeight="20.0" prefWidth="32.0" AnchorPane.rightAnchor="110.0" AnchorPane.topAnchor="142.0">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="ConfirmationPane" style="-fx-background-color: grey; -fx-border-color: yellow;" visible="false" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="200.0" AnchorPane.rightAnchor="200.0" AnchorPane.topAnchor="150.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="100.0" text="Delete Profile?" textFill="#000000fd" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="49.0" AnchorPane.topAnchor="7.0">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="HideConfirmationPane" layoutX="21.0" layoutY="93.0" mnemonicParsing="false" onAction="#HideConfirmationPane" text="No!" AnchorPane.bottomAnchor="32.0" AnchorPane.leftAnchor="25.0" />
+                  <Button fx:id="DeleteProfile" layoutX="118.0" layoutY="93.0" mnemonicParsing="false" onAction="#DeleteProfile" text="Yes!" AnchorPane.bottomAnchor="32.0" AnchorPane.rightAnchor="25.0" />
+                  <Label alignment="CENTER" layoutX="31.0" layoutY="46.0" prefHeight="30.0" prefWidth="149.0" text="You will not be able to recover this profile or its contents." textAlignment="CENTER" textFill="#000000fd" wrapText="true" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="35.0">
+                     <font>
+                        <Font size="9.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="EnterPasswordPane" prefHeight="400.0" prefWidth="600.0" visible="false" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane prefHeight="83.0" prefWidth="262.0" style="-fx-background-color: #c9c9c9; -fx-border-color: yellow;" AnchorPane.leftAnchor="150.0" AnchorPane.topAnchor="50.0">
+               <children>
+                  <Label fx:id="lblPassword1" layoutX="14.0" layoutY="21.0" text="Password" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="13.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="fieldPassword111" alignment="CENTER" layoutX="80.0" layoutY="17.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" visible="false" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0" />
+                  <PasswordField fx:id="fieldPassword211" alignment="CENTER" layoutX="80.0" layoutY="17.0" onKeyReleased="#UpdateText" prefHeight="25.0" prefWidth="120.0" promptText="OPTIONAL" AnchorPane.leftAnchor="80.0" AnchorPane.topAnchor="12.0" />
+                  <Button layoutX="85.0" layoutY="51.0" mnemonicParsing="false" onAction="#SubmitPassword" text="Submit" AnchorPane.bottomAnchor="7.0" AnchorPane.leftAnchor="85.0" />
+                  <Button id="showhide2" fx:id="btnShowHide21" layoutX="216.0" layoutY="21.0" mnemonicParsing="false" onAction="#ShowHide" prefHeight="20.0" prefWidth="32.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="15.0">
+                     <font>
+                        <Font size="1.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="189.0" layoutY="50.0" mnemonicParsing="false" onAction="#HidePasswordPane" text="Go Back" />
+               </children>
+            </AnchorPane>
+         </children>
+      </AnchorPane>
+   </children>
+   <stylesheets>
+      <URL value="@../css/Button.css" />
+      <URL value="@../css/Label.css" />
+      <URL value="@../css/Menu.css" />
+      <URL value="@../css/Misc.css" />
+      <URL value="@../css/Panel.css" />
+   </stylesheets>
+</AnchorPane>

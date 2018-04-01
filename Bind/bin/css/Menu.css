@@ -1,0 +1,5 @@
+.context-menu 
+{
+    -fx-skin: "com.sun.javafx.scene.control.skin.ContextMenuSkin";
+    -fx-background-color: #F0F0F0;
+}
