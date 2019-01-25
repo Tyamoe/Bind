@@ -38,17 +38,6 @@ public class MainPageController
 {
 	public static MainPageController mpInstance = null;
 	
-	public MainPageController()
-	{
-		mpInstance = this;
-	}
-	
-	public void initialize()
-	{
-        System.out.println("I am running!w");
-        SetupPage();
-	}
-	
 	//NODES
 	
 	@FXML
@@ -111,26 +100,26 @@ public class MainPageController
 	@FXML
 	private AnchorPane MenuBar;
 		
-		@FXML
-		private Label MainHeader;
+	@FXML
+	private Label MainHeader;
 
-		@FXML
-		private MenuButton btnProfile;
+	@FXML
+	private MenuButton btnProfile;
 		
-		@FXML
-		private Button btnRefresh;
+	@FXML
+	private Button btnRefresh;
 
 	@FXML
 	private AnchorPane CreateProfilePane;
 	
-		@FXML
-		private TextField fieldProfileName;
+	@FXML
+	private TextField fieldProfileName;
 	
 	@FXML
 	private ScrollPane sPane;
 		
-		@FXML
-		private AnchorPane Container;
+	@FXML
+	private AnchorPane Container;
 	
 	@FXML
 	private Button btnAdd;
@@ -171,20 +160,32 @@ public class MainPageController
 	Preferences prefs = Preferences.userNodeForPackage(MainPageController.class);
 	
 	private String currentID = "";
+	private String currentLoggingID = "";
 	
 	private String ProfileName = ""; 
+	private String LoggingProfileName = ""; 
+	
 	private int ProfileID = -1;
+	private int LoggingProfileID = -1;
 	
 	private int State = -1;
 	private String[][] thisKeyList;
+
+	public MainPageController()
+	{
+		mpInstance = this;
+	}
+	
+	public void initialize()
+	{
+        SetupPage();
+	}
 	
 	public void SetupPage()
 	{
-		System.out.println("Setup Page");
 		///Reseting!
 		//prefs.putInt("Profiles", 0);
 		//
-
 		Main.Searching = false;
 		
 		btnSettings.setDisable(true);
@@ -219,7 +220,7 @@ public class MainPageController
 		for(int p = 0; p < profCount; p++)
 		{
 			tempProf[p] = prefs.get("PROF" + p, "");
-			System.out.println("tempProf: " + tempProf[p]);
+			
 			
 			if(tempProf[p].equals("8/:Deleted_0"))
 			{
@@ -228,16 +229,6 @@ public class MainPageController
 			
 			String[] temp = tempProf[p].split(":");
 
-		//	System.out.println(temp.length + " prefs..." + temp[2]);
-			
-			for(int l = 0; l < temp.length; l++)
-			{
-
-				System.out.println(l + ". " + temp[l]);
-			}
-			
-			System.out.println(profCount + " Info..." + tempProf[p]);
-			
 			for(int r = 0; r < 3; r++)
 			{
 				splitProf[p][r] = temp[r];
@@ -253,17 +244,12 @@ public class MainPageController
 				@Override
 				public void handle(ActionEvent event) 
 				{
-					System.out.println("Setting Up Display..." + newItem.getUserData().toString());
 					String g = newItem.getUserData().toString();
 					String[] h = g.split(":");
 					g = h[0];
 					
-					/*
-						btnShowHide1.setId("showhide1");
-						fieldPassword21.setVisible(true);
-						fieldPassword11.setVisible(false);
-					 */
 					//If profile is password protected open password pane
+					
 					if(prefs.getBoolean(g + "isProtected", false))
 					{
 						EnterPasswordPane.setVisible(true);
@@ -273,9 +259,9 @@ public class MainPageController
 						fieldPassword211.setVisible(true);
 						fieldPassword111.setVisible(false);
 						
-						currentID = g;
-						ProfileName = newItem.getText();
-						ProfileID = Integer.parseInt(h[1]);
+						currentLoggingID = g;
+						LoggingProfileName = newItem.getText();
+						LoggingProfileID = Integer.parseInt(h[1]);
 						
 						return;
 					}
@@ -288,7 +274,7 @@ public class MainPageController
 			});
 			
 			btnProfile.getItems().add(newItem);
-			System.out.println("Check");
+			
 		}
 		
 		MenuItem AddNew = new MenuItem();
@@ -300,22 +286,16 @@ public class MainPageController
 			@Override
 			public void handle(ActionEvent event) 
 			{
-				System.out.println("Showing Profile Pane!");
+				
 				CreateProfilePane.setVisible(true);
 			}
 		});
 		btnProfile.getItems().add(AddNew);
-		
-		if(profCount > 0)
-		{
-			//Add Edit Profile Options
-		}
 	}
 	
 	@SuppressWarnings("static-access")
 	public void SetupDisplay(String Identity)
 	{
-		System.out.println("Setting Up Page!");
 		Main.mInstance.Searching = true;
 		
 		Container.getChildren().clear();
@@ -359,7 +339,7 @@ public class MainPageController
 		}
 		
 		int ShortcutCount = prefs.getInt(Identity + "ShortcutCount", 0);
-		System.out.println("ShortcutCount: " + ShortcutCount);
+		
 		
 		if(ShortcutCount > 5)
 		{
@@ -382,15 +362,12 @@ public class MainPageController
 		
 		for(int u = 0; u < ShortcutCount; u++)
 		{
-			System.out.println("u: " + u);
-			
 			String prefName = Identity + "SHORT" + (u);
-			System.out.println("prefName: " + prefName);
 			
 			Text[u] = prefs.get(prefName, "");
-			System.out.println("Text[u]: " + Text[u]);
+			
 			Text[u] = Main.mInstance.decode(Text[u], 7);
-			System.out.println("Text[u]: " + Text[u]);
+			
 			
 			Key1[u] = prefs.get(Identity + "Key1" + (u), "");
 			Key2[u] = prefs.get(Identity + "Key2" + (u), "");
@@ -400,9 +377,6 @@ public class MainPageController
 			keyList[u][1] = Key1[u];
 			keyList[u][2] = Key2[u];
 			keyList[u][3] = Key3[u];
-			
-			System.out.println("THIS::: " + Identity + "Key1" + (u));
-			System.out.println(Key1[u] + " " + Key2[u] + " " + Key3[u]);
 			
 			ShortcutPane[u] = new AnchorPane();
 			
@@ -475,8 +449,6 @@ public class MainPageController
 				@Override
 				public void handle(MouseEvent event) 
 				{
-					System.out.println("Listening for Key 1");
-					
 					TextField thisField = (TextField)event.getSource();
 					
 					thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -484,7 +456,7 @@ public class MainPageController
 						@Override
 						public void handle(javafx.scene.input.KeyEvent e)
 						{
-							System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
+							
 							thisField.setText(e.getCode().getName());
 						}
 					});
@@ -495,8 +467,6 @@ public class MainPageController
 				@Override
 				public void handle(MouseEvent event) 
 				{
-					System.out.println("Listening for Key 2");
-					
 					TextField thisField = (TextField)event.getSource();
 					
 					thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -504,7 +474,7 @@ public class MainPageController
 						@Override
 						public void handle(javafx.scene.input.KeyEvent e)
 						{
-							System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
+							
 							thisField.setText(e.getCode().getName());
 						}
 					});
@@ -515,8 +485,6 @@ public class MainPageController
 				@Override
 				public void handle(MouseEvent event) 
 				{
-					System.out.println("Listening for Key 3");
-					
 					TextField thisField = (TextField)event.getSource();
 					
 					thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -524,7 +492,6 @@ public class MainPageController
 						@Override
 						public void handle(javafx.scene.input.KeyEvent e)
 						{
-							System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
 							thisField.setText(e.getCode().getName());
 						}
 					});
@@ -536,10 +503,6 @@ public class MainPageController
 			Container.getChildren().add(ShortcutPane[u]);
 			
 			double PaneTop = (20.0 * (u + 1)) + (u * 35);
-			System.out.println("PaneTop: " + PaneTop);
-			
-			//PaneTop = (u == 0) ? PaneTop-=20 : PaneTop;
-			System.out.println("PaneTop: " + PaneTop);
 			
 			ShortcutPane[u].setPrefSize(0.0, 35.0);
 			AnchorPane.setTopAnchor(ShortcutPane[u], PaneTop);
@@ -586,13 +549,11 @@ public class MainPageController
 	
 	public void Refresh(ActionEvent e)
 	{
-		System.out.println("Refreshing!");
 		SetupDisplay(currentID);
 	}
 	
 	public void CreateProfile(ActionEvent e)
 	{
-		System.out.println("Showing Profile Pane!");
 		CreateProfilePane.setVisible(true);
 		
 		Password = true;
@@ -603,15 +564,12 @@ public class MainPageController
 	
 	public void ExitProfilePane(ActionEvent e)
 	{
-		System.out.println("Exiting Profile Pane!");
 		CreateProfilePane.setVisible(false);
 		fieldProfileName.setText("");
 	}
 	
 	public void SubmitNewProfile(ActionEvent e)
 	{
-		System.out.println("Submitted New Profile!");
-		
 		String AB = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
 		SecureRandom rnd = new SecureRandom();
 		
@@ -648,19 +606,13 @@ public class MainPageController
 		prefs.put("PROF" + (prefs.getInt("Profiles", 0)), Name + ":" + ID + ":" + (prefs.getInt("Profiles", 0)));
 		prefs.putInt(ID + "ShortcutCount", 0);
 
-		System.out.println("Profiles: " + prefs.getInt("Profiles", 0));
 		prefs.putInt("Profiles", (prefs.getInt("Profiles", 0)) + 1);
-		System.out.println("Profiles: " + prefs.getInt("Profiles", 0));
-
+		
 		ProfileName = Name; 
 		ProfileID = prefs.getInt("Profiles", 0);
 		
 		CreateProfilePane.setVisible(false);
 		fieldProfileName.setText("");
-		
-		System.out.println("Created New Profile!");
-
-		System.out.println("Details: " + ProfileName + " : " + pass + " : " + prefs.get("PROF" + (prefs.getInt("Profiles", 0)), ""));
 		
 		SetupPage();
 		SetupDisplay(ID);
@@ -670,10 +622,9 @@ public class MainPageController
 	{
 		HideError(lblPassword1);
 		
-		System.out.println("Submitted Pass");
 		String input = fieldPassword211.getText();
 		input = input.trim();
-		System.out.println("input: " + input);
+		
 		
 		if(input.equals("") || input.equals(" "))
 		{
@@ -686,9 +637,7 @@ public class MainPageController
 		input = SALT + input;
 		String hashPass = generateHash(input);
 
-		String match = prefs.get(currentID + "Password", "");
-		
-		System.out.println("Matches: " + hashPass + " = " + match);
+		String match = prefs.get(currentLoggingID + "Password", "");
 		
 		if(hashPass.equals(match))
 		{
@@ -703,8 +652,13 @@ public class MainPageController
 			fieldPassword211.setText("");
 			fieldPassword111.setText("");
 			
+			currentID = currentLoggingID;
+			ProfileName = LoggingProfileName;
+			ProfileID = LoggingProfileID;
+			
 			btnProfile.setTooltip(new Tooltip(ProfileName));
-			SetupDisplay(currentID);
+			
+			SetupDisplay(currentLoggingID);
 		}
 		else
 		{
@@ -715,8 +669,6 @@ public class MainPageController
 	
 	private void ShowError(Label lbl, String str, int...juice)
 	{
-		System.out.println("Showing Error!");
-		
 		int y = (juice.length > 0) ? juice[0] : 0;
 		
 		Tooltip lblTip = new Tooltip();
@@ -735,7 +687,6 @@ public class MainPageController
 	}
 	private void HideError(Label lbl)
 	{
-		System.out.println("Hiding Error!");
 		lbl.setTooltip(null);
 		
 		lbl.setStyle("-fx-text-fill: black;");
@@ -751,8 +702,6 @@ public class MainPageController
 	
 	public void AddNewShortcut(ActionEvent e)
 	{
-		System.out.println("Add New Shortcut!");
-
 		btnAdd.setVisible(false);
 		btnAdd.setDisable(true);
 		btnEdit.setVisible(false);
@@ -825,8 +774,6 @@ public class MainPageController
 			@Override
 			public void handle(MouseEvent event) 
 			{
-				System.out.println("Listening for Key 3");
-				
 				TextField thisField = (TextField)event.getSource();
 				
 				thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -834,7 +781,6 @@ public class MainPageController
 					@Override
 					public void handle(javafx.scene.input.KeyEvent e)
 					{
-						System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
 						thisField.setText(e.getCode().getName());
 					}
 				});
@@ -845,8 +791,6 @@ public class MainPageController
 			@Override
 			public void handle(MouseEvent event) 
 			{
-				System.out.println("Listening for Key 3");
-				
 				TextField thisField = (TextField)event.getSource();
 				
 				thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -854,7 +798,6 @@ public class MainPageController
 					@Override
 					public void handle(javafx.scene.input.KeyEvent e)
 					{
-						System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
 						thisField.setText(e.getCode().getName());
 					}
 				});
@@ -865,8 +808,6 @@ public class MainPageController
 			@Override
 			public void handle(MouseEvent event) 
 			{
-				System.out.println("Listening for Key 3");
-				
 				TextField thisField = (TextField)event.getSource();
 				
 				thisField.setOnKeyPressed(new EventHandler<javafx.scene.input.KeyEvent>() 
@@ -874,7 +815,6 @@ public class MainPageController
 					@Override
 					public void handle(javafx.scene.input.KeyEvent e)
 					{
-						System.out.println("Key Pressed " + e.getCode().getName() + " " + e.getText());
 						thisField.setText(e.getCode().getName());
 					}
 				});
@@ -883,7 +823,6 @@ public class MainPageController
 		
 		int ShortcutCount = prefs.getInt(currentID + "ShortcutCount", 0);
 		ShortcutCount++;
-		System.out.println("ShortcutCount: " + ShortcutCount);
 		
 		if(ShortcutCount > 5)
 		{
@@ -935,8 +874,6 @@ public class MainPageController
 	
 	public void EditShortcut(ActionEvent e)
 	{
-		System.out.println("Edit Shortcut!");
-		
 		btnAdd.setVisible(false);
 		btnAdd.setDisable(true);
 		btnEdit.setVisible(false);
@@ -966,8 +903,6 @@ public class MainPageController
 	
 	public void DeleteShortcut(ActionEvent e)
 	{
-		System.out.println("Delete Shortcut!");
-		
 		btnDelete.setVisible(false);
 		btnDelete.setDisable(true);
 		
@@ -1008,8 +943,6 @@ public class MainPageController
 			String thisKey2 = newKey2.getText();
 			String thisKey3 = newKey3.getText();
 			
-			System.out.println("keys: " + thisText + thisKey1 + thisKey2 + thisKey3);
-			
 			if(!thisText.equals("") && !thisKey1.equals("") && !thisKey2.equals(""))
 			{
 				Valid = true;
@@ -1042,8 +975,7 @@ public class MainPageController
 			newKey3.setTooltip(null);
 			
 			int curShort = prefs.getInt(currentID + "ShortcutCount", 0);
-			System.out.println("curShort: " + curShort);
-	
+			
 			prefs.putInt(currentID + "ShortcutCount", prefs.getInt(currentID + "ShortcutCount", 0)+1);
 	
 			String prefName = currentID + "SHORT" + curShort;
@@ -1107,23 +1039,16 @@ public class MainPageController
 			
 			State = -1;
 
-			System.out.println("length: " + ShortcutTextArray.length);
-			
 			for(int y = 0; y < ShortcutTextArray.length; y++)
 			{
-				System.out.println("y: " + y);
 				String text = ShortcutTextArray[y].getText();
 				String key1 = ShortcutKey1Array[y].getText();
 				String key2 = ShortcutKey2Array[y].getText();
 				String key3 = ShortcutKey3Array[y].getText();
 				
-				System.out.println("texts: " + text + key1 + key2 + key3);
-				
 				String prefName = currentID + "SHORT" + y;
 				prefs.put(prefName, Main.mInstance.encode(text, 7));
 				
-				System.out.println("prefName: " + prefName);
-			
 				prefs.put(currentID + "Key1" + y, key1);
 				prefs.put(currentID + "Key2" + y, key2);
 				prefs.put(currentID + "Key3" + y, key3);
@@ -1132,31 +1057,14 @@ public class MainPageController
 				ShortcutKey1Array[y].setDisable(true);
 				ShortcutKey2Array[y].setDisable(true);
 				ShortcutKey3Array[y].setDisable(true);
-				
-				/*
-					prefs.putInt(currentID + "ShortcutCount", prefs.getInt(currentID + "ShortcutCount", 0) + 1);
-			
-					int curShort = prefs.getInt(currentID + "ShortcutCount", 0);
-		
-					String prefName = currentID + "SHORT" + curShort;
-					prefs.put(prefName, Main.mInstance.encode(thisText, 7));
-				
-					prefs.put(currentID + "Key1" + curShort, thisKey1);
-					prefs.put(currentID + "Key2" + curShort, thisKey2);
-					prefs.put(currentID + "Key3" + curShort, thisKey3);
-				 */
 			}
 			
 			btnEdit.setDisable(false);
 		}
 		else if(State == 3)
 		{
-			System.out.println("Submit Delete!");
-			
 			int count = 0;
 			int[] checked = new int[ShortcutBoxArray.length];
-			
-			System.out.println("ShortcutBoxArray.length: " + ShortcutBoxArray.length);
 			
 			for(int h = 0; h < ShortcutBoxArray.length; h++)
 			{
@@ -1164,8 +1072,6 @@ public class MainPageController
 				{
 					checked[count] = h;
 					count++;
-					System.out.println("count: " + count);
-					System.out.println("h: " + h);
 				}
 			}
 			
@@ -1175,11 +1081,8 @@ public class MainPageController
 			
 			for(int g = 0; g < thisKeyList.length; g++)
 			{
-				System.out.println("List: " + g + ". " + thisKeyList[g][0] + " " + thisKeyList[g][1] + " " + thisKeyList[g][2] + " " + thisKeyList[g][3]);
-			
 				if(g == checked[il])
 				{
-					System.out.println("Skip " + g);
 					il++;
 				}
 				else
@@ -1201,14 +1104,10 @@ public class MainPageController
 				prefs.put(currentID + "Key3" + (w), "");
 			}
 			
-			System.out.println("Data: " + tempList.length + " " + prefs.getInt(currentID + "ShortcutCount", 0));
-
 			prefs.putInt(currentID + "ShortcutCount", tempList.length);
 			
 			for(int w = 0; w < tempList.length; w++)
 			{
-				System.out.println("List: " + w + ". " + tempList[w][0] + " " + tempList[w][1] + " " + tempList[w][2] + " " + tempList[w][3]);
-				
 				String prefName = currentID + "SHORT" + (w);
 				prefs.put(prefName, Main.mInstance.encode(tempList[w][0], 7));
 				prefs.put(currentID + "Key1" + (w), tempList[w][1]);
@@ -1218,12 +1117,8 @@ public class MainPageController
 			
 			SetupDisplay(currentID);
 		}
-		else
-		{
-			
-		}
-		
 	}
+	
 	public void Cancel(ActionEvent e)
 	{
 		if(State == 1)
@@ -1246,7 +1141,6 @@ public class MainPageController
 	
 	public void Shortcut(String txt) throws AWTException
 	{
-		System.out.println("Typing " + txt);
 		Robot robot = new Robot();
 		
         robot.delay(10);
@@ -1269,15 +1163,12 @@ public class MainPageController
 		String newName = fieldPName.getText();
 		newName = newName.trim();
 		
-		System.out.println("newName " + newName);
-		
 		if(newName.equals("") || newName.equals(" "))
 		{
 			return;
 		}
 
 		prefs.put("PROF" + ProfileID, newName + ":" + currentID + ":" + ProfileID);
-		System.out.println("get " + prefs.get("PROF" + ProfileID, "No"));
 		
 		ShowError(lblName, "New profile name is " + newName + ".", 1);
 		
@@ -1302,14 +1193,6 @@ public class MainPageController
 			return;
 		}
 		
-		/*
-		 * String SALT = "my-salt-text";
-			pass = SALT + pass;
-			String hashPass = generateHash(pass);
-
-			prefs.putBoolean(ID + "isProtected", true);
-			prefs.put(ID + "Password", hashPass);
-		 */
 		String SALT = "my-salt-text";
 		newPass = SALT + newPass;
 		String hashPass = generateHash(newPass);
@@ -1396,37 +1279,6 @@ public class MainPageController
 		fieldPassword1.setText("");
 		
 		SetupPage();
-		/*
-			if(p)
-			{
-				//Hash and Save Password
-				String SALT = "my-salt-text";
-				pass = SALT + pass;
-				String hashPass = generateHash(pass);
-	
-				prefs.putBoolean(ID + "isProtected", true);
-				prefs.put(ID + "Password", hashPass);
-			}
-			else
-			{
-				//Save no password
-				prefs.putBoolean(ID + "isProtected", false);
-				prefs.put(ID + "Password", "q");
-			}
-			
-			prefs.put("PROF" + (prefs.getInt("Profiles", 0)), Name + ":" + ID + ":" + (prefs.getInt("Profiles", 0)));
-			prefs.putInt(ID + "ShortcutCount", 0);
-	
-			prefs.putInt("Profiles", (prefs.getInt("Profiles", 0)) + 1);
-	
-			ProfileName = Name; 
-			ProfileID = prefs.getInt("Profiles", 0);
-			
-			CreateProfilePane.setVisible(false);
-			fieldProfileName.setText("");
-			SetupPage();
-			SetupDisplay(ID);
-		 */
 	}
 	
 	public void OpenSettings(ActionEvent e)
@@ -1514,14 +1366,6 @@ public class MainPageController
 
 	        objTimer3.getKeyFrames().clear();
 	        objTimer3.getKeyFrames().add(new KeyFrame(new Duration(250)));
-
-	        /*************MY EDIT*************
-	        Field[] All = objBehavior.getClass().getDeclaredFields();
-	        for(int y = 0; y < All.length; y++)
-	        {
-	        	System.out.println(All[y].getName());
-	        }
-	        *********************************/
 	    } 
 	    catch (Exception e)
 	    {

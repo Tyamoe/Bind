@@ -30,6 +30,24 @@ import javafx.scene.image.Image;
 public class Main extends Application implements NativeKeyListener
 {
 	public static Main mInstance = null;
+
+	public static boolean Searching = false;
+    private boolean primaryKey = false;
+    private boolean secondaryKey = false;
+    private Boolean tertiaryKey = false;
+    private boolean Blank = false;
+    
+    private static String[][] ListenKeys;
+    private static String[][] ListenFor1;
+    private static String[][] ListenFor2;
+    
+    private int ListenCount1 = 0;
+    private int ListenCount2 = 0;
+    
+    private String currentText = "";
+    private String currentKey1 = "";
+    private String currentKey2 = "";
+    private String currentKey3 = "";
 	
 	public Main()
 	{
@@ -167,7 +185,7 @@ public class Main extends Application implements NativeKeyListener
 	
 	public void ResetListenKeys()
 	{
-		System.out.println("Reseting Listen Keys!");
+		
 		
 		String[][] newKeys = new String[1][4];
 		System.arraycopy(ListenKeys, 0, newKeys, 0, ListenKeys.length);
@@ -183,38 +201,16 @@ public class Main extends Application implements NativeKeyListener
 	{
 		ListenKeys = temp;
 		ListenFor1 = new String[1][4];
-		System.out.println("ListenKeys.length: " + ListenKeys.length);
 	}
-
-	public static boolean Searching = false;
-    private boolean primaryKey = false;
-    private boolean secondaryKey = false;
-    private Boolean tertiaryKey = false;
-    private boolean Blank = false;
-    
-    private static String[][] ListenKeys;
-    private static String[][] ListenFor1;
-    private static String[][] ListenFor2;
-    
-    private int ListenCount1 = 0;
-    private int ListenCount2 = 0;
-    
-    private String currentText = "";
-    private String currentKey1 = "";
-    private String currentKey2 = "";
-    private String currentKey3 = "";
 	
 	public void nativeKeyPressed(NativeKeyEvent e) 
 	{
         if(Searching)
         {
         	nextKey = NativeKeyEvent.getKeyText(e.getKeyCode());
-    		//System.out.println("nextKey: " + nextKey);
     		
     		if(!primaryKey)
     		{
-            	System.out.println("!primaryKey");
-            	
     			String[][] k = new String[1][4];
     			ListenFor1 = k;
     			ListenCount1 = 0;
@@ -225,7 +221,6 @@ public class Main extends Application implements NativeKeyListener
     		        
     		        if(currentKey1.equals(nextKey))
     		        {
-    		        	System.out.println("Found key 1 = " + ListenCount1);
     		        	if(ListenCount1 == 0)
     		        	{
     		        		ListenFor1[ListenCount1][0] = ListenKeys[c][0];
@@ -250,11 +245,8 @@ public class Main extends Application implements NativeKeyListener
     		}
     		else
     		{
-	        	System.out.println("Primary Key Down");
     			if(!secondaryKey)
     			{
-    	        	System.out.println("Looking for secondary key");
-    	        	
     				String[][] w = new String[1][4];
         			ListenFor2 = w;
         			ListenCount2 = 0;
@@ -265,7 +257,6 @@ public class Main extends Application implements NativeKeyListener
         		        
         		        if(currentKey2.equals(nextKey))
         		        {
-        		        	System.out.println("Found key 2 = " + ListenCount2);
         		        	if(ListenCount2 == 0)
         		        	{
         		        		ListenFor2[ListenCount2][0] = ListenFor1[c][0];
@@ -277,7 +268,9 @@ public class Main extends Application implements NativeKeyListener
         		        	{
         		        		String[][] a = new String[ListenFor2.length + 1][4];
         		        		System.arraycopy(ListenFor2, 0, a, 0, ListenFor2.length);   
+        		        		
         		        		ListenFor2 = a;
+        		        		
         		        		ListenFor2[ListenFor2.length-1][0] = ListenFor1[c][0];
         		        		ListenFor2[ListenFor2.length-1][1] = ListenFor1[c][1];
         		        		ListenFor2[ListenFor2.length-1][2] = ListenFor1[c][2];
@@ -290,7 +283,6 @@ public class Main extends Application implements NativeKeyListener
              		        
              		        if(f.equals(""))
              		        {
-                 	        	System.out.println("Blank third key found.");
                  	        	currentText = ListenFor2[ListenCount2][0];
                  	        	Blank = true;
              		        }
@@ -300,25 +292,21 @@ public class Main extends Application implements NativeKeyListener
         	        }
     				if(Blank)
     				{
-         	        	System.out.println("Are all third keys blank.");
     					int fCount = 0;
     					for(int c = 0; c < ListenFor2.length; c++)
             	        {
     						String f = ListenFor2[c][3];
-             	        	System.out.println("f: " + f);
+             	        	
     						if(f.equals(""))
              		        {
-    							//System.out.println("Blank third key found.");
                  	        	currentText = ListenFor2[c][0];
                  	        	fCount++;
              		        }
             	        }
     					if(fCount == ListenFor2.length)
     					{
-             	        	System.out.println("All third keys are blank.");
     						Blank = false;
     						
-    						System.out.println("Hotkey Detected");
         		        	Searching = false;
         		        	
         		        	try 
@@ -349,10 +337,8 @@ public class Main extends Application implements NativeKeyListener
     			}
     			else
     			{
-    	        	System.out.println("Looking for tertiary key");
     				if(!tertiaryKey)
     				{
-    					System.out.println("Searching for third key");
     					for(int c = 0; c < ListenFor2.length; c++)
             	        {
             		        currentKey3 = ListenFor2[c][3];
@@ -362,7 +348,6 @@ public class Main extends Application implements NativeKeyListener
             		        	Blank = false;
             		        	currentText = ListenFor2[c][0];
 
-            		        	System.out.println("Hotkey Detected");
             		        	Searching = false;
             		        	
             		        	try 
@@ -393,6 +378,7 @@ public class Main extends Application implements NativeKeyListener
     				}
     			}
     		}
+    		
 	        //If Blank found wait for x seconds then type blankText
     		new java.util.Timer().schedule(
 
@@ -403,7 +389,6 @@ public class Main extends Application implements NativeKeyListener
     			        {
     			        	if(!tertiaryKey && Blank)
     			        	{
-    			        		System.out.println("Hotkey Detected");
             		        	Searching = false;
             		        	
             		        	try 
@@ -446,7 +431,6 @@ public class Main extends Application implements NativeKeyListener
     			        {
     			        	if(!secondaryKey && primaryKey)
     			        	{
-	    			        	System.out.println("Hotkey Not Detected");
 	    			        	primaryKey = false;
 	        		        	secondaryKey = false;
 	        		        	tertiaryKey = false;
