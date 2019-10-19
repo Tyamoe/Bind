@@ -249,7 +249,6 @@ public class MainPageController
 					g = h[0];
 					
 					//If profile is password protected open password pane
-					
 					if(prefs.getBoolean(g + "isProtected", false))
 					{
 						EnterPasswordPane.setVisible(true);
@@ -339,8 +338,6 @@ public class MainPageController
 		}
 		
 		int ShortcutCount = prefs.getInt(Identity + "ShortcutCount", 0);
-		
-		
 		if(ShortcutCount > 5)
 		{
 			Container.setPrefSize(600.0, (365.0) + ((ShortcutCount - 5) * 55.0));
@@ -367,7 +364,6 @@ public class MainPageController
 			Text[u] = prefs.get(prefName, "");
 			
 			Text[u] = Main.mInstance.decode(Text[u], 7);
-			
 			
 			Key1[u] = prefs.get(Identity + "Key1" + (u), "");
 			Key2[u] = prefs.get(Identity + "Key2" + (u), "");
@@ -688,7 +684,6 @@ public class MainPageController
 	private void HideError(Label lbl)
 	{
 		lbl.setTooltip(null);
-		
 		lbl.setStyle("-fx-text-fill: black;");
 	}
 	
@@ -976,7 +971,7 @@ public class MainPageController
 			
 			int curShort = prefs.getInt(currentID + "ShortcutCount", 0);
 			
-			prefs.putInt(currentID + "ShortcutCount", prefs.getInt(currentID + "ShortcutCount", 0)+1);
+			prefs.putInt(currentID + "ShortcutCount", prefs.getInt(currentID + "ShortcutCount", 0) + 1);
 	
 			String prefName = currentID + "SHORT" + curShort;
 			prefs.put(prefName, Main.mInstance.encode(thisText, 7));
@@ -1075,7 +1070,7 @@ public class MainPageController
 				}
 			}
 			
-			String [][] tempList = new String[thisKeyList.length-count][4];		
+			String[][] tempList = new String[thisKeyList.length-count][4];		
 			int il = 0;
 			int ut = 0;
 			
@@ -1142,7 +1137,6 @@ public class MainPageController
 	public void Shortcut(String txt) throws AWTException
 	{
 		Robot robot = new Robot();
-		
         robot.delay(10);
         
         StringSelection stringSelection = new StringSelection(txt);

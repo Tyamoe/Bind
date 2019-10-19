@@ -53,6 +53,7 @@ public class Main extends Application implements NativeKeyListener
 	{
 		mInstance = this;
 	}
+	
 	static Preferences prefs = Preferences.userNodeForPackage(Main.class);
 	
 	private static Stage mainStage;
@@ -185,8 +186,6 @@ public class Main extends Application implements NativeKeyListener
 	
 	public void ResetListenKeys()
 	{
-		
-		
 		String[][] newKeys = new String[1][4];
 		System.arraycopy(ListenKeys, 0, newKeys, 0, ListenKeys.length);
 	
@@ -462,10 +461,7 @@ public class Main extends Application implements NativeKeyListener
 		}
 	}
 
-	public void nativeKeyTyped(NativeKeyEvent arg0) 
-	{
-		
-	}
+	public void nativeKeyTyped(NativeKeyEvent arg0)  { }
 	
 	private static void hide(final Stage stage)
     {
@@ -496,11 +492,11 @@ public class Main extends Application implements NativeKeyListener
 	        {
 	            if (Character.isUpperCase(i))
 	            {
-	                encoded.append((char) ('A' + (i - 'A' + offset) % 26 ));
+	                encoded.append((char) ('A' + (i - 'A' + offset) % 26));
 	            } 
 	            else 
 	            {
-	                encoded.append((char) ('a' + (i - 'a' + offset) % 26 ));
+	                encoded.append((char) ('a' + (i - 'a' + offset) % 26));
 	            }
 	        } 
 	        else 
@@ -513,7 +509,7 @@ public class Main extends Application implements NativeKeyListener
 	
 	public String decode(String enc, int offset) 
 	{
-	    return encode(enc, 26-offset);
+	    return encode(enc, 26 - offset);
 	}
 		
 	public static void main(String[] args) 
